@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+import { getFirestore } from "firebase/firestore";
+//import { getFireStore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,14 +20,36 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const analytics = getAnalytics(app);
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
+// Handle form submission
+document.getElementById('userForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent the default form submission
 
+  // Get form values
+  var grade = document.getElementById('grade').value;
+  var name = document.getElementById('name').value;
+
+  // Save to Firestore
+  db.collection("Students").add({
+    name: name,
+    grade: grade
+  })
+  .then(function(docRef) {
+    console.log("Document written with ID: ", docRef.id);
+  })
+  .catch(function(error) {
+    console.error("Error adding document: ", error);
+  });
+});
+
+/*
 //READ WRITE functions
-function writeUserData(grade, name) {
-  firebase.database().set({
+async function writeUserData(grade, name) {
+  const docRef = await addDoc(collection(db, "Students"), {
     grade: grade,
     name: name
   });
 }
+*/
