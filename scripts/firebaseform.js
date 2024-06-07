@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore } from "firebase/firestore";
+import firebase from "firebase/app";
+import "firebase/firestore";
 //import { getFireStore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,9 +19,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+const db = firebase.firestore();
 
 // Handle form submission
 document.getElementById('userForm').addEventListener('submit', function(e) {
