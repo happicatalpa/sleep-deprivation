@@ -31,6 +31,8 @@ document.getElementById('userForm').addEventListener('submit', function(e) {
   var grade = document.getElementById('grade').value;
   var name = document.getElementById('name').value;
 
+  console.log(grade, name);
+
   // Save to Firestore
   db.collection("Students").add({
     name: name,
