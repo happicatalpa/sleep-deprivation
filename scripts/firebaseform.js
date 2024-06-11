@@ -24,7 +24,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Handle form submission
-document.getElementById('userForm').addEventListener('submit', function(e) {
+document.getElementById('sleepForm').addEventListener('submit', function(e) {
   e.preventDefault(); // Prevent the default form submission
 
   // Get form values
